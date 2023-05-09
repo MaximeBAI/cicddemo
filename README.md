@@ -14,8 +14,8 @@ pipeline steps work fine :
 1. We must have an Anypoint account with an organization.
 2. We need a technical user to communicate with anypoint platform : Management Center ==> Access Management ==> Connected Apps ==> Owned Apps ==> Create app
 3. The technical account should be set into GitHub : (project) Settings ==> secrets and variables ==> Actions ==> New Repository secrets ==> add ANYPOINT_CLIENT_ID & ANYPOINT_CLIENT_SECRET with technical account information
-4. We need a SonarCloud project set for Java, add SONAR_TOKEN to GitHub with previous step
-5. Automatic Analysis must be desactived on SonarCloud : Administration ==> Analysis Method ==> Automatic Analysis ==> disabled
+4. Automatic Analysis must be desactived on SonarCloud : Administration ==> Analysis Method ==> Automatic Analysis ==> disabled
+5. We need a SonarCloud project set for Java, add SONAR_TOKEN to GitHub with previous step : (SonarCloud Project)cicddemo ==> Administration ==> Analysis Method ==> Supported analysis methods ==> GitHub Actions ==> Follow the tutorial ==> Create a GitHub Secret
 
 Once deployed, try with http://hostURL:8081/api/flights?airline=american&code=SFO
 
