@@ -1,0 +1,54 @@
+name: anypointCLI-deploy-cloudhub1
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  DeployToCloudhub1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+
+    - name: Install Anypoint CLI
+      run: |
+        npm install -g anypoint-cli-v4
+
+    - name: List Environments
+      env:
+        ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}
+        ANYPOINT_CLIENT_SECRET: ${{ secrets.ANYPOINT_CLIENT_SECRET }}
+        ANYPOINT_ORG: ${{ secrets.ORG_ID }}
+      run: |
+        anypoint-cli-v4 conf client_id $ANYPOINT_CLIENT_ID
+        anypoint-cli-v4 conf client_secret $ANYPOINT_CLIENT_SECRET
+        anypoint-cli-v4 conf organization $ANYPOINT_ORG
+        anypoint-cli-v4 account:environment:list -o JSON
+
+    - name: Download artifact
+      id: download-artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        workflow: maven-build-publish-artifact.yml
+        name: mule-app-jar
+
+    - name: Find JAR file
+      id: find-jar
+      run: |
+        jar_file=$(find . -maxdepth 1 -type f -name '*.jar' | head -n 1)
+        echo "::set-output name=jar_file::$jar_file"
+       
+    - name: Deploy to CloudHub1
+      run: |
+        jar_file=${{ steps.find-jar.outputs.jar_file }}
+        echo "Found JAR file: $jar_file"
+        AppName="flights$(date +'%Y%m%d%H%M%S')"
+        anypoint-cli-v4 runtime-mgr:cloudhub-application:deploy --workers "1" --workerSize "0.1" "$AppName" "$jar_file" -o JSON
