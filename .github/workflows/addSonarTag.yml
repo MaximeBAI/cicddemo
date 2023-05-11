@@ -1,4 +1,4 @@
-name: Scan-Sonar-GCP
+name: addSonarTag
 on:
   workflow_dispatch: # Add this line to enable manual triggering
   workflow_call:
