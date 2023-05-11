@@ -54,5 +54,6 @@ jobs:
         timestamp=$(date +"%Y%m%d%H%M%S")
         # Create a tag with the timestamp
         tagname="SonarPassed-$timestamp"
+        git tag | grep '^Sonar' | xargs git tag -d
         git tag -a "$tagname" -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push --tags
