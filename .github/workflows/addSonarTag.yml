@@ -26,7 +26,7 @@ jobs:
         # Create a tag with the timestamp
         tagname="SonarPassed-$timestamp"
         
-        git tag -l
+        git push --delete origin SonarPassed-20230511100250
         
         git remote show origin
         
