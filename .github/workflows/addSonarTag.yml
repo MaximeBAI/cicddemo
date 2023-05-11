@@ -23,7 +23,7 @@ jobs:
         # Create a tag with the timestamp
         tagname="SonarPassed-$timestamp"
         # Delete all existing tags from the remote repository
-        git push --delete origin $(git ls-remote --tags origin | awk '{print ":" $2}')
+        git tag -l | grep '^Sonar' | xargs -I{} git push --delete origin {}
         # Delete all existing tags locally
         git tag | grep '^Sonar' | xargs git tag -d
         # Create a new tag
