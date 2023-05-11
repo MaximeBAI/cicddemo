@@ -26,10 +26,8 @@ jobs:
         # Create a tag with the timestamp
         tagname="SonarPassed-$timestamp"
         
-        git push --delete origin SonarPassed-20230511100250
-        
-        git remote show origin
-        
+        git tag -l
+              
         # Delete all existing tags from the remote repository
         git tag -l | grep '^Sonar' | xargs -I{} git push --delete origin {}
         # Delete all existing tags locally
