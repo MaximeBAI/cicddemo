@@ -33,7 +33,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_INSTANCE: ${{ secrets.SONAR_INSTANCE }}
         #run: mvn clean verify sonar:sonar -Dsonar.projectKey=cicddemo -Dsonar.host.url="${{ secrets.SONAR_INSTANCE }}" -Dsonar.login="${{ secrets.SONAR_TOKEN }}"
-        run: echo ${{ secrets.SONAR_INSTANCE }}
+        run: |
+          echo "${{ secrets.SONAR_INSTANCE }}"
+          echo "${{ secrets.SONAR_TOKEN }}"
 
   tag:
     name: add tag
