@@ -8,14 +8,14 @@ pipeline steps work fine :
     - deployement to cloudhub
     
 ## todo list
-- A globle pipeline which will organize all these pipeline steps
+- Find some way to out source the Sonar Instance URL, have to hard code into pipeline file to make it work.
 
 ## How to trigger the pipelines
 1. We must have an Anypoint account with an organization.
 2. We need a technical user to communicate with anypoint platform : Management Center ==> Access Management ==> Connected Apps ==> Owned Apps ==> Create app
 3. The technical account should be set into GitHub : (project) Settings ==> secrets and variables ==> Actions ==> New Repository secrets ==> add ANYPOINT_CLIENT_ID & ANYPOINT_CLIENT_SECRET with technical account information
 4. A SonarQube instance with Mule plugin installed is necessary for this project, refer to this page of sonar installation : https://github.com/MaximeBAI/mule-sonarqube-plugin
-5. Add SonarQube instance URL to GitHub : (project) Settings ==> secrets and variables ==> Actions ==> New repository variable ==> add SONAR_INSTACE with URL value (ex: http://34.71.131.196:9000)
+5. ~~Add SonarQube instance URL to GitHub : (project) Settings ==> secrets and variables ==> Actions ==> New repository variable ==> add SONAR_INSTACE with URL value (ex: http://34.71.131.196:9000)
 
 Once deployed, try with http://hostURL:8081/api/flights?airline=american&code=SFO
 
