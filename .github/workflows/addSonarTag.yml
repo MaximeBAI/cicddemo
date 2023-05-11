@@ -2,6 +2,9 @@ name: addSonarTag
 on:
   workflow_dispatch: # Add this line to enable manual triggering
   workflow_call:
+  push:
+    branches:
+      - main
 jobs:
   tag:
     name: add tag
@@ -24,6 +27,8 @@ jobs:
         tagname="SonarPassed-$timestamp"
         
         git tag -l
+        
+        git remote show origin
         
         # Delete all existing tags from the remote repository
         git tag -l | grep '^Sonar' | xargs -I{} git push --delete origin {}
