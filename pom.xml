@@ -15,9 +15,6 @@
 
 		<app.runtime>4.4.0-20220321</app.runtime>
 		<mule.maven.plugin.version>3.8.0</mule.maven.plugin.version>
-		
-		<sonar.organization>maximebai</sonar.organization>
-  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
 	<build>
