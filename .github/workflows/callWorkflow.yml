@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: echo SONAR_TOKEN
+        run: |
+          echo ${{ secrets.SONAR_TOKEN }}
       - name: Call SonarQube Scan workflow
         uses: ./.github/workflows/ScanSonarGCP.yml@main
         with:
           sonar-token: ${{ secrets.SONAR_TOKEN }}
-      - name: echo SONAR_TOKEN
-        run: |
-          echo ${{ secrets.SONAR_TOKEN }}
