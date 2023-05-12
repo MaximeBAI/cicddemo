@@ -34,26 +34,3 @@ jobs:
           SONAR_INSTANCE: http://34.71.131.196:9000
         run: mvn clean verify sonar:sonar -Dsonar.projectKey=cicddemo -Dsonar.host.url="$SONAR_INSTANCE" -Dsonar.login="${{ secrets.SONAR_TOKEN }}"
 
-  tag:
-    name: add tag
-    needs: analyse
-    runs-on: ubuntu-latest
-    env: 
-      CI_COMMIT_MESSAGE: Continuous Integration Analyse Successed 
-      CI_COMMIT_AUTHOR: Continuous Integration
-    steps:
-    - uses: actions/checkout@v3
-    # Commit and push all changed files.
-    - name: GIT add TAG
-      # Only run on main branch push (e.g. after pull request merge).
-      #if: github.event_name == 'push'
-      run: |
-        git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-        git config --global user.email "username@users.noreply.github.com"
-        # Generate a timestamp
-        timestamp=$(date +"%Y%m%d%H%M%S")
-        # Create a tag with the timestamp
-        tagname="SonarPassed-$timestamp"
-        git tag | grep '^Sonar' | xargs git tag -d
-        git tag -a "$tagname" -m "${{ env.CI_COMMIT_MESSAGE }}"
-        git push --tags
