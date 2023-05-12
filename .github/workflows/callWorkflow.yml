@@ -12,6 +12,6 @@ jobs:
         run: |
           echo ${{ secrets.SONAR_TOKEN }}
       - name: Call SonarQube Scan workflow
-        uses: ./.github/workflows/ScanSonarGCP.yml@main
+        uses: MaximeBAI/cicddemo/.github/workflows/ScanSonarGCP.yml@main
         with:
           sonar-token: ${{ secrets.SONAR_TOKEN }}
