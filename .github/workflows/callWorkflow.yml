@@ -1,9 +1,0 @@
-name: callWorkflow
-
-on:
-  workflow_dispatch:
-
-jobs:
-  sonarqube-scan:
-    uses: MaximeBAI/cicddemo/.github/workflows/ScanSonarGCP.yml@main
-    secrets: inherit
