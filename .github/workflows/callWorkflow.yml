@@ -5,6 +5,9 @@ on:
 
 jobs:
   sonarqube-scan:
-    uses: ./.github/workflows/ScanSonarGCP.yml
-    with:
-      sonar-token: ${{ secrets.SONAR_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call SonarQube Scan workflow
+        uses: ./.github/workflows/ScanSonarGCP.yml
+        with:
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
