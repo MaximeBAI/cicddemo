@@ -43,7 +43,7 @@ jobs:
     - name: download artifact
       uses: actions/download-artifact@v3
       with:
-        name: my-artifact
+        name: mule-app-jar
 
     - name: Find JAR file
       id: find-jar
