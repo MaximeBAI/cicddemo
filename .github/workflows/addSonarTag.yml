@@ -26,7 +26,9 @@ jobs:
         # Create a tag with the timestamp
         tagname="SonarPassed-$timestamp"
         echo "${{ github.sha }}"
+        git fetch --tags
+        git tag -l
         # Create a new tag
-        #git tag -a "$tagname" "${{ github.sha }}" -m "${{ env.CI_COMMIT_MESSAGE }}"
+        git tag -a "$tagname" "${{ github.sha }}" -m "${{ env.CI_COMMIT_MESSAGE }}"
         # Push the new tag to the remote repository
         git push --tags
