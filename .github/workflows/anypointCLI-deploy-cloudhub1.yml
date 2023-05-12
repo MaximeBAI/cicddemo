@@ -32,13 +32,18 @@ jobs:
         anypoint-cli-v4 conf organization $ANYPOINT_ORG
         anypoint-cli-v4 account:environment:list -o JSON
 
-    - name: Download artifact
-      id: download-artifact
-      uses: dawidd6/action-download-artifact@v2
+#    - name: Download artifact
+#      id: download-artifact
+#      uses: dawidd6/action-download-artifact@v2
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
+#        workflow: maven-build-publish-artifact.yml
+#        name: mule-app-jar
+        
+    - name: download artifact
+      uses: actions/download-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        workflow: maven-build-publish-artifact.yml
-        name: mule-app-jar
+        name: my-artifact
 
     - name: Find JAR file
       id: find-jar
