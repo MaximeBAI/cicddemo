@@ -25,16 +25,8 @@ jobs:
         timestamp=$(date +"%Y%m%d%H%M%S")
         # Create a tag with the timestamp
         tagname="SonarPassed-$timestamp"
-        
-        git log
-        
         echo "${{ github.sha }}"
-              
-        # Delete all existing tags from the remote repository
-        git tag -l | grep '^Sonar' | xargs -I{} git push --delete origin {}
-        # Delete all existing tags locally
-        git tag | grep '^Sonar' | xargs git tag -d
         # Create a new tag
-        #git tag -a "$tagname" -m "${{ env.CI_COMMIT_MESSAGE }}"
+        #git tag -a "$tagname" "${{ github.sha }}" -m "${{ env.CI_COMMIT_MESSAGE }}"
         # Push the new tag to the remote repository
         git push --tags
