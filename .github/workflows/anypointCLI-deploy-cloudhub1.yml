@@ -56,4 +56,11 @@ jobs:
         jar_file=${{ steps.find-jar.outputs.jar_file }}
         echo "Found JAR file: $jar_file"
         AppName="flights$(date +'%Y%m%d%H%M%S')"
-        anypoint-cli-v4 runtime-mgr:cloudhub-application:deploy --workers "1" --workerSize "0.1" "$AppName" "$jar_file" -o JSON
+        deployment_output=$(anypoint-cli-v4 runtime-mgr:cloudhub-application:deploy --workers "1" --workerSize "0.1" "$AppName" "$jar_file" -o JSON)
+        echo "$deployment_output" > deployment_output.json
+        
+    - name: Upload deployment output as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: deployment-output
+        path: deployment_output.json
