@@ -8,7 +8,7 @@ jobs:
     uses: ./.github/workflows/maven-build-publish-artifact.yml
 
   sonarqube-scan:
-    uses: ./.github/workflows/Scan-SonarCloud.yml
+    uses: ./.github/workflows/ScanSonarGCP.yml
     
   Add-sonar-tag:
     needs: [sonarqube-scan]
