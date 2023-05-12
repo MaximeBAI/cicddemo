@@ -6,6 +6,7 @@ on:
 jobs:
   build-publish-artifact:
     uses: ./.github/workflows/maven-build-publish-artifact.yml
+    secrets: inherit
 
   sonarqube-scan:
     uses: ./.github/workflows/ScanSonarGCP.yml
@@ -14,6 +15,7 @@ jobs:
   Add-sonar-tag:
     needs: [sonarqube-scan]
     uses: ./.github/workflows/addSonarTag.yml
+    secrets: inherit
 
   deploy-to-cloudhub:
     needs: [build-publish-artifact, sonarqube-scan]
