@@ -9,6 +9,9 @@ jobs:
 
   sonarqube-scan:
     uses: ./.github/workflows/ScanSonarGCP.yml
+    with:
+      sonar-token: ${{ secrets.SONAR_TOKEN }} # Pass the Sonar token as an input
+
     
   Add-sonar-tag:
     needs: [sonarqube-scan]
