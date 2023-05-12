@@ -37,4 +37,4 @@ jobs:
         # Create a new tag
         git tag -a "$tagname" -m "${{ env.CI_COMMIT_MESSAGE }}"
         # Push the new tag to the remote repository
-        #git push --tags
+        git push --tags
