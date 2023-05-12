@@ -3,6 +3,9 @@ name: test Workflow
 on:
   workflow_dispatch:
 
+env:
+  SONAR: ${{ secrets.SONAR }}
+
 jobs:
   sonarqube-scan:
     runs-on: ubuntu-latest
@@ -10,4 +13,4 @@ jobs:
     steps:
       - name: output the env var
         run: |
-          env
+          echo ${{ env.SONAR }}
