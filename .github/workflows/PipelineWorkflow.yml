@@ -19,6 +19,5 @@ jobs:
 
   deploy-to-cloudhub:
     needs: [build-publish-artifact, sonarqube-scan]
-    if: needs.build-publish-artifact.result == 'success' && needs.sonarcloud-scan.result == 'success'
     uses: ./.github/workflows/anypointCLI-deploy-cloudhub1.yml
     secrets: inherit
