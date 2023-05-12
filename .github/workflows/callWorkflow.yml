@@ -8,7 +8,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Call SonarQube Scan workflow
-        uses: ./.github/workflows/ScanSonarGCP.yml
+      - name: Trigger ScanSonarGCP workflow
+        uses: actions/github-script@v5
         with:
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const workflowResponse = await octokit.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'ScanSonarGCP.yml',
+              ref: context.sha,
+              inputs: {
+                sonar-token: '${{ secrets.SONAR_TOKEN }}'
+              }
+            });
+            console.log(workflowResponse);
