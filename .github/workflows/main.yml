@@ -1,0 +1,13 @@
+name: test Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sonarqube-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: output the env var
+        run: |
+          echo ${{ env.SONAR_INSTANCE }}
