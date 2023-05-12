@@ -30,3 +30,4 @@ jobs:
       with:
         name: mule-app-jar
         path: target/*.jar
+        retention-days: 1
