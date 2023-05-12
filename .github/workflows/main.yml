@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: output the env var
         run: |
-          echo ${{ env.SONAR }}
+          env
