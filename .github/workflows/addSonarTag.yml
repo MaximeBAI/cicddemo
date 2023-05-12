@@ -2,10 +2,7 @@ name: addSonarTag
 on:
   workflow_dispatch: # Add this line to enable manual triggering
   workflow_call:
-  push:
-    branches:
-      - main
-
+  
 jobs:
   tag:
     name: add tag
