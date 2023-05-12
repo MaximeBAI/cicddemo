@@ -27,6 +27,8 @@ jobs:
         tagname="SonarPassed-$timestamp"
         
         git log
+        
+        echo "${{ github.sha }}"
               
         # Delete all existing tags from the remote repository
         git tag -l | grep '^Sonar' | xargs -I{} git push --delete origin {}
