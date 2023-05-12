@@ -25,9 +25,12 @@ jobs:
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "username@users.noreply.github.com"
 
-        # Delete all existing tags from the remote repository
+        # Get all tags
         git fetch --tags
+        # Delete all existing tags with the prefix "Sonar" from the remote repository
         git tag -l | grep '^Sonar' | xargs -I{} git push --delete origin {}
+        # Delete all local tags with the prefix "Sonar"
+        git tag -l | grep '^Sonar' | xargs git tag -d
         
         # Generate a timestamp
         timestamp=$(date +"%Y%m%d%H%M%S")
