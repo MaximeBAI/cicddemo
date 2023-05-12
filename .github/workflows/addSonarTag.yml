@@ -33,8 +33,10 @@ jobs:
         timestamp=$(date +"%Y%m%d%H%M%S")
         # Create a tag with the timestamp
         tagname="SonarPassed-$timestamp"
+        echo "time stamp created"
         
         # Create a new tag
         git tag -a "$tagname" -m "${{ env.CI_COMMIT_MESSAGE }}"
         # Push the new tag to the remote repository
+        echo "pushing to remote"
         git push --tags
