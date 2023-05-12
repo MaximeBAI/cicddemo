@@ -1,0 +1,10 @@
+name: callWorkflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sonarqube-scan:
+    uses: ./.github/workflows/ScanSonarGCP.yml
+    with:
+      sonar-token: ${{ secrets.SONAR_TOKEN }}
