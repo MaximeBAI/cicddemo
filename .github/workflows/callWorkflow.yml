@@ -6,9 +6,8 @@ on:
 jobs:
   sonarqube-scan:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
       - name: Call SonarQube Scan workflow
         uses: ./.github/workflows/ScanSonarGCP.yml
         with:
