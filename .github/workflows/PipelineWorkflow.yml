@@ -7,11 +7,15 @@ jobs:
   build-publish-artifact:
     uses: ./.github/workflows/maven-build-publish-artifact.yml
 
-  sonarcloud-scan:
+  sonarqube-scan:
     uses: ./.github/workflows/Scan-SonarCloud.yml
+    
+  Add-sonar-tag:
+    needs: [sonarqube-scan]
+    uses: ./.github/workflows/addSonarTag.yml
 
   deploy-to-cloudhub:
-    needs: [build-publish-artifact, sonarcloud-scan]
+    needs: [build-publish-artifact, sonarqube-scan]
     if: needs.build-publish-artifact.result == 'success' && needs.sonarcloud-scan.result == 'success'
     uses: ./.github/workflows/anypointCLI-deploy-cloudhub1.yml
     secrets: inherit
