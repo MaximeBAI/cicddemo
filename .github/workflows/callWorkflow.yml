@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Call SonarQube Scan workflow
-        uses: ./.github/workflows/ScanSonarGCP.yml
+        uses: ./.github/workflows/ScanSonarGCP.yml@main
         with:
           sonar-token: ${{ secrets.SONAR_TOKEN }}
       - name: echo SONAR_TOKEN
