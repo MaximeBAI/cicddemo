@@ -21,13 +21,16 @@ jobs:
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "username@users.noreply.github.com"
+
+        # Delete all existing tags from the remote repository
+        git fetch --tags
+        git tag -l | grep '^Sonar' | xargs -I{} git push --delete origin {}
+        
         # Generate a timestamp
         timestamp=$(date +"%Y%m%d%H%M%S")
         # Create a tag with the timestamp
         tagname="SonarPassed-$timestamp"
-        echo "${{ github.sha }}"
-        git fetch --tags
-        git tag -l
+        
         # Create a new tag
         git tag -a "$tagname" "${{ github.sha }}" -m "${{ env.CI_COMMIT_MESSAGE }}"
         # Push the new tag to the remote repository
