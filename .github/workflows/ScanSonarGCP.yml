@@ -2,11 +2,7 @@ name: Scan-Sonar-GCP
 on:
   workflow_dispatch: # Add this line to enable manual triggering
   workflow_call:
-    inputs:
-      sonar-token:
-        description: "Sonar token"
-        required: true
-        type: string
+
 jobs:
   analyse:
     name: SonarMule Analyze
